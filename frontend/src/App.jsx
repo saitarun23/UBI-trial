@@ -7,7 +7,7 @@ import useScrollEffect from "./assets/hooks/useScrollEffect";
 import Navbar from "./assets/components/Navbar";
 import Footer from "./assets/components/Footer";
 
-import Home from "./pages/home/Home";
+import Home from "./pages/home/home";
 import About from "./pages/about/About";
 import Services from "./pages/services/Services";
 import Infrastructure from "./pages/infrastructure/Infrastructure";
