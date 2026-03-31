@@ -18,7 +18,7 @@ import infra1 from './infra1.png';
 import infra2 from './infra2.png';
 import infra3 from './infra3.png';
 import infra4 from './infra4.png';
-import contacthero from './contacthero.png';
+import contacthero from './contactHero.png';
 import aboutHero from './aboutHero.png';
 import aboutwe from './aboutwe.png';
 import aboutjourney from './aboutjourney.png';
