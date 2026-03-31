@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import assets from "../images";
 import "../../styles/navbar.css";
 
 const Navbar = ({ onChangePage, activePage }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggle = () => setMenuOpen((prev) => !prev);
 
-  const handleLinkClick = (page) => () => {
-    onChangePage(page);      // update state in App
-    setMenuOpen(false);      // close mobile menu
-    // no preventDefault -> URL hash will update (#home, #about, etc.)
+  const handleLinkClick = (page) => (e) => {
+    e.preventDefault();
+    onChangePage(page);
+    setMenuOpen(false);
   };
 
   return (
@@ -29,7 +31,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         {/* Desktop / Tablet Navigation */}
         <nav className="navbar-menu">
           <a
-            href="#home"
+            href="/home"
             className={activePage === "home" ? "active" : ""}
             onClick={handleLinkClick("home")}
           >
@@ -37,7 +39,7 @@ const Navbar = ({ onChangePage, activePage }) => {
           </a>
 
           <a
-            href="#services"
+            href="/services"
             className={activePage === "services" ? "active" : ""}
             onClick={handleLinkClick("services")}
           >
@@ -45,7 +47,7 @@ const Navbar = ({ onChangePage, activePage }) => {
           </a>
 
           {/* <a
-            href="#products"
+            href="/products"
             className={activePage === "products" ? "active" : ""}
             onClick={handleLinkClick("products")}
           >
@@ -54,7 +56,7 @@ const Navbar = ({ onChangePage, activePage }) => {
 
         
           <a
-            href="#about"
+            href="/about"
             className={activePage === "about" ? "active" : ""}
             onClick={handleLinkClick("about")}
           >
@@ -62,7 +64,7 @@ const Navbar = ({ onChangePage, activePage }) => {
           </a>
 
           <a
-            href="#infrastructure"
+            href="/infrastructure"
             className={activePage === "infrastructure" ? "active" : ""}
             onClick={handleLinkClick("infrastructure")}
           >
@@ -70,7 +72,7 @@ const Navbar = ({ onChangePage, activePage }) => {
           </a>
 
           <a
-            href="#contact"
+            href="/contact"
             className={activePage === "contact" ? "active" : ""}
             onClick={handleLinkClick("contact")}
           >
@@ -93,7 +95,7 @@ const Navbar = ({ onChangePage, activePage }) => {
       {/* Mobile Menu (Dropdown) */}
       <nav className={`navbar-menu-mobile ${menuOpen ? "is-open" : ""}`}>
         <a
-          href="#home"
+          href="/home"
           className={activePage === "home" ? "active" : ""}
           onClick={handleLinkClick("home")}
         >
@@ -101,7 +103,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         </a>
 
         <a
-          href="#services"
+          href="/services"
           className={activePage === "services" ? "active" : ""}
           onClick={handleLinkClick("services")}
         >
@@ -109,7 +111,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         </a>
 
         {/* <a
-          href="#products"
+          href="/products"
           className={activePage === "products" ? "active" : ""}
           onClick={handleLinkClick("products")}
         >
@@ -117,7 +119,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         </a> */}
 
         <a
-          href="#about"
+          href="/about"
           className={activePage === "about" ? "active" : ""}
           onClick={handleLinkClick("about")}
         >
@@ -125,7 +127,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         </a>
 
         <a
-          href="#infrastructure"
+          href="/infrastructure"
           className={activePage === "infrastructure" ? "active" : ""}
           onClick={handleLinkClick("infrastructure")}
         >
@@ -133,7 +135,7 @@ const Navbar = ({ onChangePage, activePage }) => {
         </a>
 
         <a
-          href="#contact"
+          href="/contact"
           className={activePage === "contact" ? "active" : ""}
           onClick={handleLinkClick("contact")}
         >

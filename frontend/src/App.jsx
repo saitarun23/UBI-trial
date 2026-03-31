@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import useScrollEffect from "./assets/hooks/useScrollEffect";
@@ -17,74 +18,28 @@ import Contact from "./pages/contact/Contact";
 import SplashScreen from "./assets/components/SplashScreen";
 
 const App = () => {
-  const getPageFromHash = () => {
-    const hash = window.location.hash.replace("#", "") || "home";
-    const pageName = hash.split("?")[0];
-    const validPages = [
-      "home",
-      "about",
-      "services",
-      "infrastructure",
-      "products",
-      "product-detail",
-      "contact",
-    ];
-    return validPages.includes(pageName) ? pageName : "home";
-  };
-
-  const initialPageRef = useRef(getPageFromHash());
-
-  const [activePage, setActivePage] = useState(initialPageRef.current);
-
-  // 🔥 Two states:
-  // showSplash = splash component mounted
-  // splashDone  = splash finished timeline, content can render
   const [showSplash, setShowSplash] = useState(true);
   const [splashDone, setSplashDone] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // ✅ Trigger scroll observer only after content is visible
-  const scrollEffectKey = splashDone ? activePage : "__splash__";
+  const scrollEffectKey = splashDone ? location.pathname : "__splash__";
   useScrollEffect(scrollEffectKey);
 
   // ✅ Scroll to top on page change (after splash)
   useEffect(() => {
     if (splashDone) window.scrollTo(0, 0);
-  }, [activePage, splashDone]);
-
-  // hash changes
-  useEffect(() => {
-    const handleHashChange = () => {
-      if (!splashDone) return;
-      setActivePage(getPageFromHash());
-    };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [splashDone]);
-
-  const pages = {
-    home: <Home />,
-    about: <About />,
-    services: <Services />,
-    infrastructure: <Infrastructure />,
-    products: <Products />,
-    "product-detail": <ProductDetail />,
-    contact: <Contact />,
-  };
-
-  // Render ProductDetail
-  const renderDetailPage = () => {
-    return <ProductDetail />;
-  };
+  }, [location.pathname, splashDone]);
 
   const handleSplashFinish = () => {
-    // 1) allow content to mount behind splash immediately
     setSplashDone(true);
+    // If on root path, navigate to home
+    if (location.pathname === "/") {
+      navigate("/home", { replace: true });
+    }
 
-    const page = initialPageRef.current;
-    setActivePage(page);
-    if (!window.location.hash) window.location.hash = `#${page}`;
-
-    // 2) keep splash mounted for 2 frames, then remove it
+    // keep splash mounted for 2 frames, then remove it
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setShowSplash(false);
@@ -93,13 +48,32 @@ const App = () => {
     });
   };
 
+  // Get current page name from pathname for Navbar
+  const getPageName = () => {
+    const path = location.pathname.replace("/", "") || "home";
+    return path;
+  };
+
+  const handleChangePage = (pageName) => {
+    navigate(`/${pageName}`);
+  };
+
   return (
     <div>
       {/* ✅ Render content as soon as splashDone, even if splash still mounted */}
       {splashDone && (
         <>
-          <Navbar onChangePage={setActivePage} activePage={activePage} />
-          {activePage === "product-detail" ? renderDetailPage() : pages[activePage]}
+          <Navbar onChangePage={handleChangePage} activePage={getPageName()} />
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/infrastructure" element={<Infrastructure />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product-detail" element={<ProductDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
           <Footer />
         </>
       )}
