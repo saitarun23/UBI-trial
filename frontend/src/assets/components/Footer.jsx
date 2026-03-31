@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/Footer.css";
+import "../../styles/footer.css";
 import assets from "../images";
 
 // Custom SVG Icons
