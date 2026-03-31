@@ -894,20 +894,20 @@
 @media (max-width: 480px) {
   /* Hero */
   .industry-hero {
-    height: 280px;
+    height: 850px;
   }
 
   .text-line-1,
   .text-line-2 {
-    font-size: 2.2rem;
+    font-size: 5rem;
   }
   
   .text-word {
-    font-size: 1.8rem;
+    font-size: 5rem;
   }
   
   .text-single {
-    font-size: 2rem;
+    font-size: 5rem;
   }
 
   .text-layout-inline {
