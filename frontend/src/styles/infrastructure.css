@@ -1,0 +1,413 @@
+/* GENERAL PAGE STYLING */
+.infra-page {
+  background-color: #000000;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+
+.infra-hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 90px 8% 70px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #000000;
+  color: #ffffff;
+}
+
+.infra-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.infra-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.1) brightness(0.9);
+}
+
+.infra-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.85) 35%,
+    rgba(0, 0, 0, 0.6) 70%,
+    transparent 100%
+  );
+}
+
+.infra-hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+.infra-hero-title {
+  font-size: 2.6rem;
+  font-weight: 400;
+  margin: 0 0 8px;
+  margin-left: 20px;
+  font-family: "Aleo", serif;
+}
+
+.infra-hero-subtitle {
+  font-size: 1rem;
+  max-width: 460px;
+  line-height: 1.7;
+  color: #ffffff;
+  font-family: "Aleo", serif;
+}
+
+/* =========================
+   MAIN SECTIONS - TAB BASED
+   ========================= */
+
+.infra-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 40px 120px;
+}
+
+/* TABS HEADER */
+
+.infra-tabs-container {
+  margin-bottom: 60px;
+}
+
+.infra-tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.infra-tabs-title {
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 1.5px;
+  font-family: "Aleo", serif;
+}
+
+.infra-tabs-count {
+  font-size: 0.95rem;
+  color: #999999;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* TAB NAVIGATION */
+
+.infra-tabs-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.infra-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #aaaaaa;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 100px;
+  background: transparent;
+}
+
+.infra-tab-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.infra-tab-btn--active {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border-color: #ffffff;
+  color: #000000;
+}
+
+.infra-tab-icon {
+  font-size: 1.8rem;
+  display: inline-block;
+}
+
+.infra-tab-label {
+  display: block;
+  line-height: 1.2;
+}
+
+/* CONTENT WRAPPER */
+
+.infra-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* LEFT - IMAGE */
+
+.infra-content-left {
+  position: sticky;
+  top: 100px;
+}
+
+.infra-image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 17/10;
+}
+
+.infra-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.infra-image:hover {
+  transform: scale(1.05);
+}
+
+/* RIGHT - SPECIFICATIONS */
+
+.infra-content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.infra-spec-header {
+  margin-bottom: 40px;
+}
+
+.infra-spec-title {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.5px;
+  font-family: "Aleo", serif;
+}
+
+.infra-spec-description {
+  font-size: 1.05rem;
+  color: #cccccc;
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 300;
+  font-family: "Aleo", serif;
+}
+
+/* SPECS GRID WITH AUTO-CYCLE */
+
+.infra-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.infra-spec-item {
+  padding: 20px;
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* FILL EFFECT FOR SPEC CARDS */
+.infra-spec-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s ease;
+  z-index: 0;
+}
+
+/* ACTIVE STATE (AUTO ANIMATION) */
+.infra-spec-item.infra-spec-item--active::before {
+  transform: scaleX(1);
+}
+
+.infra-spec-item.infra-spec-item--active {
+  border-color: #ffffff;
+}
+
+.infra-spec-item.infra-spec-item--active .infra-spec-label {
+  color: #555555;
+}
+
+.infra-spec-item.infra-spec-item--active .infra-spec-value {
+  color: #000000;
+}
+
+/* HOVER EFFECT (STILL WORKS) */
+.infra-spec-item:hover::before {
+  transform: scaleX(1);
+}
+
+.infra-spec-item:hover {
+  border-color: #ffffff;
+}
+
+.infra-spec-item:hover .infra-spec-label {
+  color: #555555;
+}
+
+.infra-spec-item:hover .infra-spec-value {
+  color: #000000;
+}
+
+.infra-spec-item * {
+  position: relative;
+  z-index: 1;
+}
+
+.infra-spec-label {
+  font-size: 0.85rem;
+  color: #666666;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
+}
+
+.infra-spec-value {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.4s ease;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1024px) {
+  .infra-main {
+    padding: 70px 32px 90px;
+  }
+
+  .infra-tabs-nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .infra-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .infra-content-left {
+    position: relative;
+    top: 0;
+  }
+
+  .infra-specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .infra-tabs-title {
+    font-size: 1.8rem;
+  }
+
+  .infra-spec-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .infra-main {
+    padding: 60px 20px 80px;
+  }
+
+  .infra-tabs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .infra-tabs-nav {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .infra-tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .infra-tabs-title {
+    font-size: 1.5rem;
+  }
+
+  .infra-spec-title {
+    font-size: 1.4rem;
+  }
+
+  .infra-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .infra-spec-item {
+    padding: 16px;
+  }
+
+  .infra-spec-label {
+    font-size: 0.75rem;
+  }
+
+  .infra-spec-value {
+    font-size: 1rem;
+  }
+}

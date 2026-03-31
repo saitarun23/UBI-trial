@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Source Sans Pro',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Remove default button styles */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Focus styles for accessibility */
+button:focus, input:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.scroll-effect {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.9s ease;
+}
+
+.scroll-effect.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+html, body {
+  background: #0a0a0a; /* same as splash bg */
+  margin: 0;
+  padding: 0;
+}

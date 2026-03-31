@@ -1,0 +1,364 @@
+/* ============================================
+   MATERIAL SHOWCASE - 3D STACKED CARDS
+   ============================================ */
+
+.materials-showcase-new {
+  background: #000000;
+  color: #ffffff;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.showcase-header-new {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.showcase-main-title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  letter-spacing: -1.5px;
+  /* background: linear-gradient(135deg, #ffffff 0%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; */
+}
+
+.showcase-subtitle {
+  font-size: 1.2rem;
+  color: #a0aec0;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   3D STACKED CARDS CONTAINER
+   ============================================ */
+
+.materials-stack-container {
+  max-width: 900px;
+  margin: 60px auto 80px;
+  position: relative;
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.material-card-3d {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(20, 184, 166, 0.02) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  margin-bottom: -8px;
+}
+
+.material-card-3d:hover .card-header-3d {
+  border-color: rgba(20, 184, 166, 0.5);
+}
+
+/* ============================================
+   CARD HEADER (Always Visible)
+   ============================================ */
+
+.card-header-3d {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 32px;
+  border: 2px solid;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+
+.card-icon-wrapper-3d {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(20, 184, 166, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-header-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-name-3d {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.card-brief-3d {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin: 0;
+  font-weight: 400;
+}
+
+.expand-indicator {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #14b8a6;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================
+   EXPANDABLE CONTENT
+   ============================================ */
+
+.card-content-3d {
+  padding: 0 32px 28px 92px;
+  background: rgba(20, 184, 166, 0.03);
+  position: relative;
+}
+
+.content-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.3), transparent);
+  margin-bottom: 20px;
+}
+
+.details-section {
+  margin-bottom: 20px;
+}
+
+.details-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #14b8a6;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.full-description {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============================================
+   PARTICLES
+   ============================================ */
+
+.particles-container {
+  position: relative;
+  pointer-events: none;
+}
+
+.particle {
+  pointer-events: none;
+}
+
+/* ============================================
+   DESCRIPTION SECTION
+   ============================================ */
+
+.materials-description-section {
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, transparent 100%);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 16px;
+}
+
+.description-content h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.3px;
+}
+
+.description-content p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .materials-showcase-new {
+    padding: 60px 24px;
+  }
+
+  .showcase-main-title {
+    font-size: 2.8rem;
+  }
+
+  .materials-stack-container {
+    margin: 50px auto 60px;
+  }
+
+  .card-header-3d {
+    padding: 24px 24px;
+    gap: 16px;
+  }
+
+  .card-icon-wrapper-3d {
+    width: 50px;
+    height: 50px;
+  }
+
+  .card-name-3d {
+    font-size: 1.2rem;
+  }
+
+  .card-content-3d {
+    padding: 0 24px 24px 74px;
+  }
+}
+
+@media (max-width: 768px) {
+  .materials-showcase-new {
+    padding: 50px 16px;
+  }
+
+  .showcase-main-title {
+    font-size: 2rem;
+  }
+
+  .showcase-subtitle {
+    font-size: 1rem;
+  }
+
+  .materials-stack-container {
+    margin: 40px auto 50px;
+  }
+
+  .card-header-3d {
+    padding: 20px 16px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-icon-wrapper-3d {
+    width: 45px;
+    height: 45px;
+  }
+
+  .card-name-3d {
+    font-size: 1.1rem;
+  }
+
+  .card-brief-3d {
+    font-size: 0.9rem;
+  }
+
+  .expand-indicator {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .card-content-3d {
+    padding: 0 16px 20px 16px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-description-section {
+    padding: 30px 16px;
+  }
+
+  .description-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .description-content p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .materials-showcase-new {
+    padding: 40px 12px;
+  }
+
+  .showcase-main-title {
+    font-size: 1.6rem;
+  }
+
+  .showcase-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-header-3d {
+    padding: 16px 12px;
+  }
+
+  .card-name-3d {
+    font-size: 1rem;
+  }
+
+  .card-content-3d {
+    padding: 0 12px 16px 12px;
+  }
+
+  .detail-badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}

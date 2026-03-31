@@ -1,0 +1,282 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  color: white;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: opacity 0.8s ease;
+}
+
+.hero-canvas.visible {
+  opacity: 1;
+}
+
+.hero-canvas.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  animation: gradientPulse 8s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  top: 110px;
+  background-size: cover;
+  background-position: center;
+  animation: backgroundZoom 20s ease-in-out infinite;
+}
+
+@keyframes backgroundZoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 5vw;
+}
+
+.hero-title {
+  font-size: clamp(50px, 6vw, 90px);
+  font-family: "Cormorant Garamond", serif;
+  line-height: 1.2;
+  font-weight: 600;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+.hero-line {
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.hero-sub {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.8;
+  max-width: 700px;
+  line-height: 1.6;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.hero-nav:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-nav.prev {
+  left: 30px;
+}
+
+.hero-nav.next {
+  right: 30px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 5;
+  align-items: center;
+}
+
+.dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dot.active {
+  width: 40px;
+  border-radius: 5px;
+  background: rgba(212, 175, 55, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.8);
+}
+
+.dot-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #d4af37, #f4d03f);
+  border-radius: 5px;
+}
+
+.hero-counter {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 5;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.current-slide {
+  font-size: 36px;
+  font-weight: 600;
+  color: #d4af37;
+}
+
+.slide-divider {
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.total-slides {
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0 8vw;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 10vw, 60px);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .hero-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-nav.prev {
+    left: 15px;
+  }
+
+  .hero-nav.next {
+    right: 15px;
+  }
+
+  .hero-counter {
+    top: 30px;
+    right: 30px;
+    font-size: 18px;
+  }
+
+  .current-slide {
+    font-size: 28px;
+  }
+
+  .hero-dots {
+    bottom: 30px;
+  }
+}
+
+/* Smooth entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  animation: fadeInUp 1s ease-out;
+}
