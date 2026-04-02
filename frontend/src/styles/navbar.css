@@ -1,317 +1,317 @@
-/* =========================
-   GLOBAL NAVBAR WRAPPER
-   ========================= */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #000000;
-  z-index: 70;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-/* Container */
-.navbar-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Brand (logo + text) */
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Logo */
-.navbar-brand img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 26px;
-}
-
-/* Text wrapper (2 lines) */
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-  margin-top: 11px ;
-}
-
-/* First line */
-.brand-name {
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 550;
-  letter-spacing: 0.6px;
-  margin-left: -24px;
-  font-family: "Playfair Display", serif;
-}
-
-/* Second line */
-.brand-industry {
-  color: rgba(20, 184, 166, 1);
-  font-size:16px;
-  font-weight: 400;
-  margin-left: 30px;
-  margin-right: -100px;
-  font-family: "Playfair Display", serif;
-}
-
-
-/* =========================
-   DESKTOP / LAPTOP MENU (>= 1024px)
-   ========================= */
-.navbar-menu {
-  display: flex;
-  gap: 32px;
-  margin-right: 21px;
-}
-
-/* Menu links */
-.navbar-menu a {
-  position: relative;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  text-decoration: none;
-  padding: 4px 0;
-  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-  font-family: "Playfair Display", serif;
-
-}
-
-/* Hidden glow bar */
-.navbar-menu a::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, #ffffff, #ffffff);
-  border-radius: 50px;
-  transition: width 0.35s ease;
-}
-
-/* Hover — Text slightly lifts */
-.navbar-menu a:hover {
-  color: #ffffff;
-  transform: translateY(-5px);
-}
-
-/* Hover — Glow bar expands from center */
-.navbar-menu a:hover::before {
-  width: 100%;
-}
-
-/* Active state desktop */
-.navbar-menu a.active {
-  opacity: 1;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-.navbar-menu a.active::before {
-  width: 100%;
-}
-
-/* =========================
-   MOBILE TOGGLE BUTTON
-   ========================= */
-.navbar-toggle {
-  display: none; /* hidden by default (desktop) */
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.navbar-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: #ffffff;
-  margin: 5px 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Animate to "X" when open */
-.navbar-toggle.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.navbar-toggle.is-open span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-toggle.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* =========================
-   MOBILE DROPDOWN MENU
-   ========================= */
-.navbar-menu-mobile {
-  display: none;
-  flex-direction: column;
-  background-color: #000000;
-  padding: 8px 24px 16px;
-  gap: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.navbar-menu-mobile a {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  padding: 4px 0;
-}
-
-.navbar-menu-mobile a:hover {
-  color: #9ca3af;
-}
-
-/* Active state mobile */
-.navbar-menu-mobile a.active {
-  color: #ffffff;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.navbar-menu-mobile.is-open {
-  display: flex;
-}
-
-/* =========================
-   RESPONSIVE BREAKPOINTS
-   ========================= */
-
-/* -------- TABLET / SMALL LAPTOP: 768px - 1023px -------- */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .navbar-container {
-    padding: 15px 24px;
+  /* =========================
+    GLOBAL NAVBAR WRAPPER
+    ========================= */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    z-index: 70;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   }
 
+  /* Container */
+  .navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Brand (logo + text) */
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Logo */
   .navbar-brand img {
     height: 48px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 26px;
   }
 
-  .brand-name {
-    font-size: 17px;
-    margin-left: -22px;
-    font-weight: 550;
-  }
-
-  .brand-industry {
-    font-size: 14px;
-    margin-left: 28px;
-    margin-right: 0;
-  }
-
-  /* Hide desktop menu, show hamburger */
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
-
-  .navbar-menu-mobile {
-    padding: 8px 24px 16px;
-  }
-}
-
-/* -------- LARGE DESKTOP: >= 1440px -------- */
-@media (min-width: 1440px) {
-  .navbar-container {
-    max-width: 1440px;
-    padding: 20px 48px;
-  }
-
-  .brand-name {
-    font-size: 20px;
-  }
-
-  .brand-industry {
-    font-size: 16px;
-  }
-
-  .navbar-menu a {
-    font-size: 15px;
-  }
-}
-
-/* -------- MOBILE: <= 767px -------- */
-@media (max-width: 767px) {
-  .navbar-container {
-    padding: 14px 16px;
-  }
-
-  .navbar-brand img {
-    height: 46px;
-  }
-
-  .brand-name {
-    font-size: 17px;
-    margin-left: -20px;
-    font-weight: 550;
-  }
-
-  .brand-industry {
-    font-size: 14px;
-    margin-left: 25px;
-    margin-right: 0;
-  }
-
-  /* Hide desktop menu, show hamburger */
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
-
-  .navbar-menu-mobile {
-    padding: 8px 16px 16px;
-  }
-}
-
-/* -------- SMALL MOBILE: <= 480px -------- */
-@media (max-width: 480px) {
-  .navbar-brand {
-    gap: 9px;
-  }
-
+  /* Text wrapper (2 lines) */
   .brand-text {
-    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    margin-top: 11px ;
   }
 
+  /* First line */
   .brand-name {
-    font-size: 15px;
-    margin-left: -29px;
+    color: #ffffff;
+    font-size: 20px;
     font-weight: 550;
+    letter-spacing: 0.6px;
+    margin-left: -24px;
+    font-family: "Playfair Display", serif;
   }
 
+  /* Second line */
   .brand-industry {
-    font-size: 13px;
-    margin-left: 58px;
-    margin-right: 0;
+    color: rgba(20, 184, 166, 1);
+    font-size:17px;
+    font-weight: 400;
+    margin-left: 30px;
+    margin-right: -100px;
+    font-family: "Playfair Display", serif;
+  }
+
+
+  /* =========================
+    DESKTOP / LAPTOP MENU (>= 1024px)
+    ========================= */
+  .navbar-menu {
+    display: flex;
+    gap: 32px;
+    margin-right: 21px;
+  }
+
+  /* Menu links */
+  .navbar-menu a {
+    position: relative;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+    font-family: "Playfair Display", serif;
+
+  }
+
+  /* Hidden glow bar */
+  .navbar-menu a::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ffffff, #ffffff);
+    border-radius: 50px;
+    transition: width 0.35s ease;
+  }
+
+  /* Hover — Text slightly lifts */
+  .navbar-menu a:hover {
+    color: #ffffff;
+    transform: translateY(-5px);
+  }
+
+  /* Hover — Glow bar expands from center */
+  .navbar-menu a:hover::before {
+    width: 100%;
+  }
+
+  /* Active state desktop */
+  .navbar-menu a.active {
+    opacity: 1;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .navbar-menu a.active::before {
+    width: 100%;
+  }
+
+  /* =========================
+    MOBILE TOGGLE BUTTON
+    ========================= */
+  .navbar-toggle {
+    display: none; /* hidden by default (desktop) */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .navbar-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #ffffff;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Animate to "X" when open */
+  .navbar-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .navbar-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* =========================
+    MOBILE DROPDOWN MENU
+    ========================= */
+  .navbar-menu-mobile {
+    display: none;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 8px 24px 16px;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .navbar-menu-mobile a {
-    font-size: 13px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    padding: 4px 0;
   }
-}
+
+  .navbar-menu-mobile a:hover {
+    color: #9ca3af;
+  }
+
+  /* Active state mobile */
+  .navbar-menu-mobile a.active {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .navbar-menu-mobile.is-open {
+    display: flex;
+  }
+
+  /* =========================
+    RESPONSIVE BREAKPOINTS
+    ========================= */
+
+  /* -------- TABLET / SMALL LAPTOP: 768px - 1023px -------- */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .navbar-container {
+      padding: 15px 24px;
+    }
+
+    .navbar-brand img {
+      height: 48px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      margin-left: -22px;
+      font-weight: 550;
+    }
+
+    .brand-industry {
+      font-size: 14px;
+      margin-left: 28px;
+      margin-right: 0;
+    }
+
+    /* Hide desktop menu, show hamburger */
+    .navbar-menu {
+      display: none;
+    }
+
+    .navbar-toggle {
+      display: block;
+    }
+
+    .navbar-menu-mobile {
+      padding: 8px 24px 16px;
+    }
+  }
+
+  /* -------- LARGE DESKTOP: >= 1440px -------- */
+  @media (min-width: 1440px) {
+    .navbar-container {
+      max-width: 1440px;
+      padding: 20px 48px;
+    }
+
+    .brand-name {
+      font-size: 20px;
+    }
+
+    .brand-industry {
+      font-size: 16px;
+    }
+
+    .navbar-menu a {
+      font-size: 15px;
+    }
+  }
+
+  /* -------- MOBILE: <= 767px -------- */
+  @media (max-width: 767px) {
+    .navbar-container {
+      padding: 14px 16px;
+    }
+
+    .navbar-brand img {
+      height: 46px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      margin-left: -20px;
+      font-weight: 550;
+    }
+
+    .brand-industry {
+      font-size: 14px;
+      margin-left: 25px;
+      margin-right: 0;
+    }
+
+    /* Hide desktop menu, show hamburger */
+    .navbar-menu {
+      display: none;
+    }
+
+    .navbar-toggle {
+      display: block;
+    }
+
+    .navbar-menu-mobile {
+      padding: 8px 16px 16px;
+    }
+  }
+
+  /* -------- SMALL MOBILE: <= 480px -------- */
+  @media (max-width: 480px) {
+    .navbar-brand {
+      gap: 9px;
+    }
+
+    .brand-text {
+      max-width: 200px;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      margin-left: -29px;
+      font-weight: 550;
+    }
+
+    .brand-industry {
+      font-size: 13px;
+      margin-left: 58px;
+      margin-right: 0;
+    }
+
+    .navbar-menu-mobile a {
+      font-size: 13px;
+    }
+  }

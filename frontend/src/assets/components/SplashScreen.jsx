@@ -61,26 +61,26 @@ const SplashScreen = ({ onFinish }) => {
     // subtitle + desc appear 1.1s after slide image settles
     const t6b = setTimeout(() => setShowSubtitle(true), 7600);
 
-    // ── LAMINATE slide ──────────────────────────────────── 11.5s  (~4s reading time per slide)
+    // ── LAMINATE slide ──────────────────────────────────── 9.5s  (~3s reading time per slide - FASTER)
     const t7 = setTimeout(() => {
       setActiveIdx(1);
       setShowSubtitle(false);
-    }, 11500);
-    const t7b = setTimeout(() => setShowSubtitle(true), 12600);
+    }, 9500);
+    const t7b = setTimeout(() => setShowSubtitle(true), 10600);
 
-    // ── PACK slide ──────────────────────────────────────── 16.5s
+    // ── PACK slide ──────────────────────────────────────── 13.5s
     const t8 = setTimeout(() => {
       setActiveIdx(2);
       setShowSubtitle(false);
-    }, 16500);
-    const t8b = setTimeout(() => setShowSubtitle(true), 17600);
+    }, 13500);
+    const t8b = setTimeout(() => setShowSubtitle(true), 14600);
 
-    // ── Phase 5: Blur-out exit ──────────────────────────── 21.5s
-    const t9  = setTimeout(() => setBlurring(true), 21500);
+    // ── Phase 5: Blur-out exit ──────────────────────────── 17.5s
+    const t9  = setTimeout(() => setBlurring(true), 17500);
     const t10 = setTimeout(() => {
       document.body.style.overflow = "auto";
       onFinish?.();
-    }, 22700);
+    }, 18700);
 
     return () => {
       [t1,t2,t3,t4,t5,t6,t6b,t7,t7b,t8,t8b,t9,t10].forEach(clearTimeout);
@@ -128,7 +128,7 @@ const SplashScreen = ({ onFinish }) => {
               }}
             >
               <div className="svc-inner">
-                <span className="svc-index">0{i + 1}</span>
+                {/* <span className="svc-index">0{i + 1}</span> */}
 
                 <h2 className="svc-title">{svc.title}</h2>
 

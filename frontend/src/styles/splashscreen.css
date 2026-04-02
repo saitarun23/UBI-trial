@@ -195,7 +195,7 @@
   align-items: center;
   gap: 20px;               /* ↑ was 14px — more breathing room */
   pointer-events: none;
-  user-select: none;
+  /* user-select: none; */
   padding: 0 24px;
 }
 

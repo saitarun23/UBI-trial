@@ -152,9 +152,18 @@ export default function Footer() {
             
             <div className="contact-info">
               <div className="contact-item">
-                <div className="contact-icon">
+                <button 
+                  className="contact-icon-btn"
+                  onClick={() => {
+                    window.open(
+                      "https://www.google.com/maps/@17.8849841,83.3784497,15z?q=R.Sy.No:146/3B,+Vemulavalasa,+Anandapuram+Mandal,+Visakhapatnam+District,+531163",
+                      "_blank"
+                    );
+                  }}
+                  title="Open location on map"
+                >
                   <MapPinIcon />
-                </div>
+                </button>
                 <div className="contact-details">
                   <h5>Visit Us</h5>
                   <p>R.Sy.No:146/3B, Vemulavalasa, Anandapuram Mandal, Visakhapatnam District, pincode - 531163</p>
@@ -167,8 +176,8 @@ export default function Footer() {
                 </div>
                 <div className="contact-details">
                   <h5>Call Us</h5>
-                  <p>+91 984 927 6508</p>
-                  <p>+91 955 382 9879</p>
+                  <p>+91 9618323745</p>
+                  {/* <p>+91 955 382 9879</p> */}
                 </div>
               </div>
 
@@ -204,7 +213,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-social">
-            <a href="mailto:Ubindustries@gmail.com" className="social-link" aria-label="Gmail">
+            <a href="mailto:ubindustries@gmail.com" className="social-link" aria-label="Gmail">
               <GmailIcon />
             </a>
             <a href="https://twitter.com" className="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">

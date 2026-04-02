@@ -1,60 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaBox, FaCheck, FaBolt, FaBullseye } from "react-icons/fa6";
 import {FiStar, FiTrendingUp, FiFileText, FiUserCheck} from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
 import assets from "../../assets/images";
 import "../../styles/about.css";
-
-// text configurations with varied animation styles
-const textConfigurations = [
-  {
-    type: "two-line-caps",
-    line1: "ABOUT",
-    line2: "US",
-    line1Color: "#ffffff",
-    line2Color: "#14b8a6",
-  },
-  {
-    type: "two-word-mixed",
-    word1: "Our",
-    word2: "Story",
-    word1Color: "#ffffff",
-    word2Color: "#14b8a6",
-  },
-  {
-    type: "three-word-mixed",
-    word1: "Quality",
-    word2: "&",
-    word3: "Excellence",
-    word1Color: "#d1d5db",
-    word2Color: "#14b8a6",
-    word3Color: "#d1d5db",
-  },
-  {
-    type: "two-word-mixed",
-    word1: "Trust",
-    word2: "& Partnership",
-    word1Color: "#ffffff",
-    word2Color: "#14b8a6",
-  },
-  {
-    type: "single-word",
-    text: "Innovation",
-    color: "#ffffff",
-  },
-  {
-    type: "single-word",
-    text: "Excellence",
-    color: "#14b8a6",
-  },
-  {
-    type: "two-word-mixed",
-    word1: "Customer",
-    word2: "Focused",
-    word1Color: "#ffffff",
-    word2Color: "#14b8a6",
-  },
-];
 
 const JOURNEY = [
   {
@@ -220,214 +168,8 @@ export default function About() {
     return () => clearInterval(interval);
   }, [isFeatureVisible]);
 
-  // Hero text rotation state
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-
-  // Rotate text every 1.4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % textConfigurations.length);
-    }, 1400);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentConfig = textConfigurations[currentTextIndex];
-
   return (
     <main className="about-page" id="about">
-      {/* HERO WITH NEW TEXT CONFIGURATIONS */}
-      <header className="industry-hero">
-        <div className="industry-bg-pattern"></div>
-
-        <div className="industry-hero-content">
-          <AnimatePresence mode="wait">
-            {/* Two Line Caps Layout */}
-            {currentConfig.type === "two-line-caps" && (
-              <motion.div
-                key={currentTextIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-layout-two-line"
-              >
-                <motion.h1
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ color: currentConfig.line1Color }}
-                  className="text-line-1"
-                >
-                  {currentConfig.line1}
-                </motion.h1>
-                <motion.h1
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  style={{ color: currentConfig.line2Color }}
-                  className="text-line-2"
-                >
-                  {currentConfig.line2}
-                </motion.h1>
-              </motion.div>
-            )}
-
-            {/* Two Line Mixed Layout */}
-            {currentConfig.type === "two-line-mixed" && (
-              <motion.div
-                key={currentTextIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-layout-two-line"
-              >
-                <motion.h1
-                  initial={{ x: -100, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 100, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ color: currentConfig.line1Color }}
-                  className="text-line-1"
-                >
-                  {currentConfig.line1}
-                </motion.h1>
-                <motion.h1
-                  initial={{ x: 100, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -100, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ color: currentConfig.line2Color }}
-                  className="text-line-2"
-                >
-                  {currentConfig.line2}
-                </motion.h1>
-              </motion.div>
-            )}
-
-            {/* Two Word Mixed Layout */}
-            {currentConfig.type === "two-word-mixed" && (
-              <motion.div
-                key={currentTextIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-layout-inline"
-              >
-                <motion.span
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ color: currentConfig.word1Color }}
-                  className="text-word"
-                >
-                  {currentConfig.word1}
-                </motion.span>
-                <motion.span
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  style={{ color: currentConfig.word2Color }}
-                  className="text-word"
-                >
-                  {currentConfig.word2}
-                </motion.span>
-              </motion.div>
-            )}
-
-            {/* Three Word Mixed Layout */}
-            {currentConfig.type === "three-word-mixed" && (
-              <motion.div
-                key={currentTextIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-layout-inline"
-              >
-                <motion.span
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ color: currentConfig.word1Color }}
-                  className="text-word"
-                >
-                  {currentConfig.word1}
-                </motion.span>
-                <motion.span
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  style={{ color: currentConfig.word2Color }}
-                  className="text-word"
-                >
-                  {currentConfig.word2}
-                </motion.span>
-                <motion.span
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  style={{ color: currentConfig.word3Color }}
-                  className="text-word"
-                >
-                  {currentConfig.word3}
-                </motion.span>
-              </motion.div>
-            )}
-
-            {/* Single Word Layout */}
-            {currentConfig.type === "single-word" && (
-              <motion.h1
-                key={currentTextIndex}
-                initial={{ rotateX: 90, opacity: 0 }}
-                animate={{ rotateX: 0, opacity: 1 }}
-                exit={{ rotateX: -90, opacity: 0 }}
-                transition={{ duration: 0.6 }}
-                style={{ color: currentConfig.color }}
-                className="text-single"
-              >
-                {currentConfig.text}
-              </motion.h1>
-            )}
-          </AnimatePresence>
-        </div>
-      </header>
-
-      {/* WELCOME */}
-      <section className="about-welcome">
-        <div className="aboutfirst-grid scroll-effect">
-          {items.map((item, index) => {
-            const isActive = index === activeIndex;
-
-            return (
-              <div
-                key={index}
-                className={`aboutfirst-card 
-                  ${item.featured ? "featured" : ""} 
-                  ${isActive ? "active" : ""}
-                `}
-                onMouseEnter={() => setActiveIndex(index)}
-              >
-                <div className="aboutfirst-card-inner">
-                  <div className="icon">{item.icon}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
       <section className="about-main">
         {/* WHO WE ARE */}
         <section className="about-company-section">
@@ -492,6 +234,32 @@ export default function About() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* WELCOME */}
+        <section className="about-welcome">
+          <div className="aboutfirst-grid scroll-effect">
+            {items.map((item, index) => {
+              const isActive = index === activeIndex;
+
+              return (
+                <div
+                  key={index}
+                  className={`aboutfirst-card 
+                    ${item.featured ? "featured" : ""} 
+                    ${isActive ? "active" : ""}
+                  `}
+                  onMouseEnter={() => setActiveIndex(index)}
+                >
+                  <div className="aboutfirst-card-inner">
+                    <div className="icon">{item.icon}</div>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 

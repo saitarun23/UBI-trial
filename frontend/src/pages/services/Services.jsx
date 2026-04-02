@@ -261,8 +261,7 @@ const packagingSolutions = [
 
 export default function Services() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
-  const [activeImages, setActiveImages] = useState({});
+  const [productStates, setProductStates] = useState({});
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -271,15 +270,41 @@ export default function Services() {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-transition images for each product
+  // Sequence loop for each product: image1 → image2 → overlay
   useEffect(() => {
     const intervals = products.map((product) => {
+      let step = 0; // 0: image1, 1: image2, 2: overlay
+      
+      // Initialize state for this product
+      setProductStates((prev) => ({
+        ...prev,
+        [product.id]: { currentImage: 'image1', showOverlay: false }
+      }));
+
       return setInterval(() => {
-        setActiveImages((prev) => ({
-          ...prev,
-          [product.id]: prev[product.id] === 'image2' ? 'image1' : 'image2'
-        }));
-      }, 2500); // Change every 2.5 seconds
+        if (step === 0) {
+          // Show image1
+          setProductStates((prev) => ({
+            ...prev,
+            [product.id]: { currentImage: 'image1', showOverlay: false }
+          }));
+          step = 1;
+        } else if (step === 1) {
+          // Show image2
+          setProductStates((prev) => ({
+            ...prev,
+            [product.id]: { currentImage: 'image2', showOverlay: false }
+          }));
+          step = 2;
+        } else {
+          // Show overlay
+          setProductStates((prev) => ({
+            ...prev,
+            [product.id]: { ...prev[product.id], showOverlay: true }
+          }));
+          step = 0;
+        }
+      }, 2500); // Each step lasts 2.5 seconds
     });
 
     return () => {
@@ -294,7 +319,13 @@ export default function Services() {
 
       {/* ANIMATED HERO */}
       <header className="services-hero-new">
-        <div className="services-bg-pattern"></div>
+        <div className="services-hero-bg">
+          <img
+            src={assets.servicesHero}
+            alt="Services overview"
+          />
+        </div>
+        <div className="services-hero-overlay" />
         <div className="services-hero-content-new">
           <AnimatePresence mode="wait">
 
@@ -492,69 +523,71 @@ export default function Services() {
           </div>
 
           <div className="products-grid">
-            {products.map((product) => (
-              <motion.div
-                key={product.id}
-                className="product-card"
-                onMouseEnter={() => setHoveredProduct(product.id)}
-                onMouseLeave={() => setHoveredProduct(null)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: product.id * 0.1 }}
-              >
-                {/* IMAGE + OVERLAY */}
-                <div className="product-image-container">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={activeImages[product.id] || 'image1'}
-                      src={activeImages[product.id] === 'image2' ? product.image2 : product.image1}
-                      alt={product.name}
-                      className="product-image"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.8 }}
-                    />
-                  </AnimatePresence>
+            {products.map((product) => {
+              const state = productStates[product.id] || { currentImage: 'image1', showOverlay: false };
+              
+              return (
+                <motion.div
+                  key={product.id}
+                  className="product-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: product.id * 0.1 }}
+                >
+                  {/* IMAGE + OVERLAY */}
+                  <div className="product-image-container">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={state.currentImage}
+                        src={state.currentImage === 'image2' ? product.image2 : product.image1}
+                        alt={product.name}
+                        className="product-image"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                      />
+                    </AnimatePresence>
 
-                  {/* DETAILED OVERLAY */}
-                  <div className="product-overlay" style={{ 
-                    opacity: hoveredProduct === product.id ? 1 : 0,
-                    transform: hoveredProduct === product.id ? 'translateY(0)' : 'translateY(20px)'
-                  }}>
+                    {/* AUTO-SHOWING OVERLAY */}
+                    <div className="product-overlay" style={{ 
+                      opacity: state.showOverlay ? 1 : 0,
+                      transform: state.showOverlay ? 'translateY(0)' : 'translateY(20px)'
+                    }}>
 
-                    <div className="overlay-section-label">Products</div>
-                    <div className="overlay-chips-row">
-                      {product.subcategories.map((item, i) => (
-                        <span key={i} className="overlay-chip">{item}</span>
-                      ))}
+                      <div className="overlay-section-label">Products</div>
+                      <div className="overlay-chips-row">
+                        {product.subcategories.map((item, i) => (
+                          <span key={i} className="overlay-chip">{item}</span>
+                        ))}
+                      </div>
+
+                      <div className="overlay-divider"></div>
+
+                      <div className="overlay-section-label">Description</div>
+                      <p className="overlay-desc-text">{product.description}</p>
+
+                      <div className="overlay-divider"></div>
+
+                      <div className="overlay-section-label">Type of Materials</div>
+                      <div className="overlay-material-row">
+                        {product.materials.map((mat, i) => (
+                          <span key={i} className="overlay-mat-tag">{mat}</span>
+                        ))}
+                      </div>
+
                     </div>
-
-                    <div className="overlay-divider"></div>
-
-                    <div className="overlay-section-label">Description</div>
-                    <p className="overlay-desc-text">{product.description}</p>
-
-                    <div className="overlay-divider"></div>
-
-                    <div className="overlay-section-label">Type of Materials</div>
-                    <div className="overlay-material-row">
-                      {product.materials.map((mat, i) => (
-                        <span key={i} className="overlay-mat-tag">{mat}</span>
-                      ))}
-                    </div>
-
                   </div>
-                </div>
 
-                {/* PRODUCT NAME ONLY — material tags removed */}
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                </div>
+                  {/* PRODUCT NAME ONLY */}
+                  <div className="product-info">
+                    <h3 className="product-name">{product.name}</h3>
+                  </div>
 
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 

@@ -222,61 +222,132 @@
   opacity: 0.7;
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-  .hero-content {
-    padding: 0 8vw;
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero {
+    height: 65vh;
+    min-height: 380px;
+  }
+
+  .hero-bg {
+    /* On tablets the subject is usually in the center—keep it */
+    background-position: center center;
+  }
+}
+
+/* Mobile landscape / small tablet */
+@media (max-width: 768px) {
+  .hero {
+    height: 55vh;
+    min-height: 340px;
+  }
+
+  .hero-bg {
+    /* Pull the focal area slightly up so rolls/products are visible */
+    background-position: center 40%;
+    background-size: cover;
   }
 
   .hero-title {
-    font-size: clamp(36px, 10vw, 60px);
+    font-size: clamp(36px, 8vw, 64px);
+    margin-bottom: 12px;
   }
 
   .hero-sub {
-    font-size: 16px;
-    margin-top: 15px;
+    font-size: 15px;
+    max-width: 90%;
   }
 
   .hero-nav {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
   }
 
-  .hero-nav.prev {
-    left: 15px;
-  }
-
-  .hero-nav.next {
-    right: 15px;
-  }
+  .hero-nav.prev { left: 16px; }
+  .hero-nav.next { right: 16px; }
 
   .hero-counter {
-    top: 30px;
-    right: 30px;
-    font-size: 18px;
+    top: 28px;
+    right: 28px;
+    font-size: 20px;
   }
 
-  .current-slide {
-    font-size: 28px;
+  .current-slide { font-size: 30px; }
+
+  .hero-dots { bottom: 28px; }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .hero {
+    height: 45vh;
+    min-height: 300px;
   }
 
-  .hero-dots {
-    bottom: 30px;
+  .hero-bg {
+    /* Keep the product/rolls area centered — adjust % to taste */
+    background-position: center 35%;
+    background-size: cover;
+  }
+
+  .hero-content {
+    padding: 0 6vw;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: clamp(20px, 10vw, 48px);
+    margin-bottom: 10px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    margin-top: 8px;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .hero-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-nav.prev { left: 10px; }
+  .hero-nav.next { right: 10px; }
+
+  .hero-counter {
+    top: 20px;
+    right: 20px;
+    font-size: 16px;
+  }
+
+  .current-slide { font-size: 24px; }
+  .slide-divider  { font-size: 16px; }
+  .total-slides   { font-size: 16px; }
+
+  .hero-dots { bottom: 20px; }
+
+  .dot { width: 8px; height: 8px; }
+  .dot.active { width: 32px; }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .hero {
+    height: 48vh;
+    min-height: 280px;
+  }
+
+  .hero-bg {
+    background-position: center 30%;
+  }
+
+  .hero-title {
+    font-size: clamp(24px, 11vw, 42px);
   }
 }
 
-/* Smooth entrance animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero {
-  animation: fadeInUp 1s ease-out;
-}

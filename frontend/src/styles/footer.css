@@ -294,7 +294,24 @@
   position: relative;
 }
 
-.contact-icon::before {
+.contact-icon-btn {
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+  position: relative;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.contact-icon::before,
+.contact-icon-btn::before {
   content: '';
   position: absolute;
   inset: -2px;
@@ -304,16 +321,19 @@
 }
 
 /* Location Icon - Red */
-.contact-item:nth-child(1) .contact-icon {
+.contact-item:nth-child(1) .contact-icon,
+.contact-item:nth-child(1) .contact-icon-btn {
   background: #ef4444;
   color: #fff;
 }
 
-.contact-item:nth-child(1) .contact-icon::before {
+.contact-item:nth-child(1) .contact-icon::before,
+.contact-item:nth-child(1) .contact-icon-btn::before {
   background: #ef4444;
 }
 
-.contact-item:nth-child(1):hover .contact-icon {
+.contact-item:nth-child(1):hover .contact-icon,
+.contact-item:nth-child(1):hover .contact-icon-btn {
   background: #dc2626;
   transform: scale(1.1);
 }
@@ -348,11 +368,13 @@
   transform: scale(1.1);
 }
 
-.contact-item:hover .contact-icon::before {
+.contact-item:hover .contact-icon::before,
+.contact-item:hover .contact-icon-btn::before {
   opacity: 0.2;
 }
 
-.contact-icon svg {
+.contact-icon svg,
+.contact-icon-btn svg {
   position: relative;
   z-index: 1;
 }
@@ -1023,6 +1045,13 @@
   }
 
   .contact-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    margin: 0 auto;
+  }
+
+  .contact-icon-btn {
     width: 38px;
     height: 38px;
     flex-shrink: 0;

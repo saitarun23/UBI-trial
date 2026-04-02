@@ -1,5 +1,5 @@
 /* ============================================
-   MATERIAL SHOWCASE - 3D STACKED CARDS
+   MATERIAL SHOWCASE - GRID CARDS
    ============================================ */
 
 .materials-showcase-new {
@@ -8,7 +8,6 @@
   padding: 80px 40px;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
 }
 
 /* ============================================
@@ -29,10 +28,6 @@
   color: #ffffff;
   margin: 0 0 16px 0;
   letter-spacing: -1.5px;
-  /* background: linear-gradient(135deg, #ffffff 0%, #14b8a6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text; */
 }
 
 .showcase-subtitle {
@@ -45,107 +40,126 @@
 }
 
 /* ============================================
-   3D STACKED CARDS CONTAINER
+   MATERIALS GRID
    ============================================ */
 
-.materials-stack-container {
-  max-width: 900px;
-  margin: 60px auto 80px;
-  position: relative;
-  perspective: 1000px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.material-card-3d {
-  position: relative;
-  background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(20, 184, 166, 0.02) 100%);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  border-radius: 16px;
-  overflow: hidden;
+.material-card {
+  padding: 32px;
+  background: linear-gradient(135deg, 
+    rgba(var(--card-color-rgb), 0.08) 0%, 
+    rgba(var(--card-color-rgb), 0.02) 100%);
+  border: 1px solid rgba(var(--card-color-rgb), 0.2);
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  transform-style: preserve-3d;
-  margin-bottom: -8px;
-}
-
-.material-card-3d:hover .card-header-3d {
-  border-color: rgba(20, 184, 166, 0.5);
-}
-
-/* ============================================
-   CARD HEADER (Always Visible)
-   ============================================ */
-
-.card-header-3d {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 28px 32px;
-  border: 2px solid;
-  border-radius: 14px;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
   position: relative;
-  z-index: 10;
+  overflow: hidden;
+  --card-color-rgb: 20, 184, 166;
 }
 
-.card-icon-wrapper-3d {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background: rgba(20, 184, 166, 0.1);
+.material-card[style*="--card-color: #f97316"] {
+  --card-color-rgb: 249, 115, 22;
+}
+
+.material-card[style*="--card-color: #3b82f6"] {
+  --card-color-rgb: 59, 130, 246;
+}
+
+.material-card[style*="--card-color: #08a722"] {
+  --card-color-rgb: 8, 167, 34;
+}
+
+.material-card[style*="--card-color: #187980"] {
+  --card-color-rgb: 24, 121, 128;
+}
+
+.material-card:hover {
+  border-color: var(--card-color);
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, 
+    rgba(var(--card-color-rgb), 0.15) 0%, 
+    rgba(var(--card-color-rgb), 0.06) 100%);
+}
+
+.material-card.active {
+  background: linear-gradient(135deg, 
+    rgba(var(--card-color-rgb), 0.2) 0%, 
+    rgba(var(--card-color-rgb), 0.1) 100%);
+  border-color: var(--card-color);
+  transform: translateY(-8px);
+}
+
+.material-card.expanded {
+  grid-column: 1 / -1;
+}
+
+/* Hide all non-expanded cards when any card is expanded */
+.materials-grid:has(.material-card.expanded) .material-card:not(.expanded) {
+  display: none;
+}
+
+.material-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  background: rgba(var(--card-color-rgb), 0.15);
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.card-header-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.material-card.active .card-icon {
+  background: rgba(var(--card-color-rgb), 0.25);
+  transform: scale(1.1);
 }
 
-.card-name-3d {
-  font-size: 1.4rem;
-  font-weight: 700;
+.material-card-inner h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
   margin: 0;
+  color: #ffffff;
   letter-spacing: -0.3px;
 }
 
-.card-brief-3d {
+.material-card-inner p {
   font-size: 0.95rem;
   color: #cbd5e1;
   margin: 0;
+  line-height: 1.6;
   font-weight: 400;
 }
 
-.expand-indicator {
-  font-size: 2rem;
-  font-weight: 300;
-  color: #14b8a6;
-  transition: transform 0.3s ease;
-  display: flex;
-  align-items: center;
+.material-card.active .material-card-inner p {
+  color: #e0f2f1;
 }
 
 /* ============================================
    EXPANDABLE CONTENT
    ============================================ */
 
-.card-content-3d {
-  padding: 0 32px 28px 92px;
-  background: rgba(20, 184, 166, 0.03);
+.card-content-expanded {
+  padding: 20px 0 0 0;
   position: relative;
 }
 
 .content-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--card-color-rgb), 0.3), transparent);
   margin-bottom: 20px;
 }
 
@@ -154,10 +168,10 @@
 }
 
 .details-section h4 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: #14b8a6;
-  margin: 0 0 16px 0;
+  color: var(--card-color);
+  margin: 0 0 12px 0;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
@@ -173,9 +187,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #ffffff;
   text-align: center;
@@ -183,51 +197,9 @@
 }
 
 .full-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #cbd5e1;
-  line-height: 1.7;
-  margin: 0;
-  font-weight: 400;
-}
-
-/* ============================================
-   PARTICLES
-   ============================================ */
-
-.particles-container {
-  position: relative;
-  pointer-events: none;
-}
-
-.particle {
-  pointer-events: none;
-}
-
-/* ============================================
-   DESCRIPTION SECTION
-   ============================================ */
-
-.materials-description-section {
-  max-width: 900px;
-  margin: 80px auto 0;
-  padding: 50px 40px;
-  background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, transparent 100%);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  border-radius: 16px;
-}
-
-.description-content h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.3px;
-}
-
-.description-content p {
-  font-size: 1rem;
-  color: #cbd5e1;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
   font-weight: 400;
 }
@@ -245,26 +217,9 @@
     font-size: 2.8rem;
   }
 
-  .materials-stack-container {
-    margin: 50px auto 60px;
-  }
-
-  .card-header-3d {
-    padding: 24px 24px;
-    gap: 16px;
-  }
-
-  .card-icon-wrapper-3d {
-    width: 50px;
-    height: 50px;
-  }
-
-  .card-name-3d {
-    font-size: 1.2rem;
-  }
-
-  .card-content-3d {
-    padding: 0 24px 24px 74px;
+  .materials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
   }
 }
 
@@ -281,54 +236,30 @@
     font-size: 1rem;
   }
 
-  .materials-stack-container {
-    margin: 40px auto 50px;
+  .materials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
   }
 
-  .card-header-3d {
-    padding: 20px 16px;
-    gap: 12px;
-    flex-direction: column;
-    align-items: flex-start;
+  .material-card {
+    padding: 24px;
   }
 
-  .card-icon-wrapper-3d {
-    width: 45px;
-    height: 45px;
-  }
-
-  .card-name-3d {
+  .material-card-inner h3 {
     font-size: 1.1rem;
   }
 
-  .card-brief-3d {
+  .material-card-inner p {
     font-size: 0.9rem;
   }
 
-  .expand-indicator {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
-
-  .card-content-3d {
-    padding: 0 16px 20px 16px;
+  .card-icon {
+    width: 48px;
+    height: 48px;
   }
 
   .details-grid {
     grid-template-columns: 1fr;
-  }
-
-  .materials-description-section {
-    padding: 30px 16px;
-  }
-
-  .description-content h3 {
-    font-size: 1.4rem;
-  }
-
-  .description-content p {
-    font-size: 0.95rem;
   }
 }
 
@@ -345,20 +276,26 @@
     font-size: 0.9rem;
   }
 
-  .card-header-3d {
-    padding: 16px 12px;
+  .materials-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
-  .card-name-3d {
+  .material-card {
+    padding: 20px;
+  }
+
+  .material-card-inner h3 {
     font-size: 1rem;
   }
 
-  .card-content-3d {
-    padding: 0 12px 16px 12px;
+  .card-icon {
+    width: 44px;
+    height: 44px;
   }
 
-  .detail-badge {
-    font-size: 0.8rem;
-    padding: 6px 10px;
+  .details-grid {
+    grid-template-columns: 1fr;
   }
 }
+

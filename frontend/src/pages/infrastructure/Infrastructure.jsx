@@ -124,6 +124,17 @@ export default function Infrastructure() {
     setActiveSpecIndex(0);
   }, [activeTab]);
 
+  // Auto-cycle through tabs when visible
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % sections.length);
+    }, 3000); // Change tab every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
+
   return (
     <main className="infra-page">
       {/* HERO */}
