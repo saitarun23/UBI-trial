@@ -213,7 +213,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-social">
-            <a href="mailto:ubindustries@gmail.com" className="social-link" aria-label="Gmail">
+            <a href="Urmilabhupathirajuindustries@gmail.com" className="social-link" aria-label="Gmail">
               <GmailIcon />
             </a>
             <a href="https://twitter.com" className="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
