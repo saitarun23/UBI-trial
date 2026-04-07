@@ -170,8 +170,8 @@
   color: #000;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
+/* TABLET - iPad and larger tablets (600px - 768px) */
+@media (max-width: 768px) and (min-width: 600px) {
   .homeproducts-section {
     padding: 60px 0 40px;
   }
@@ -189,12 +189,12 @@
   }
 
   .homeproducts-scroll-wrapper {
-    padding: 0 30px;
+    padding: 0 35px;
   }
 
   .homeproduct-card {
     min-width: 200px;
-    height: 300px;
+    height: 320px;
   }
 
   .homeproduct-overlay h3 {
@@ -203,29 +203,81 @@
   }
 }
 
-@media (max-width: 480px) {
-  .homeproducts-scroll-wrapper {
-    padding: 0 20px;
+/* MEDIUM MOBILE - Larger phones (480px - 599px) */
+@media (max-width: 599px) and (min-width: 375px) {
+  .homeproducts-section {
+    padding: 50px 0 35px;
   }
 
-  .homeproduct-card {
-    min-width: 180px;
-    height: 280px;
+  .homeproducts-heading {
+    padding: 0 15px;
   }
 
   .homeproducts-heading span {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .homeproducts-heading h2 {
     font-size: 14px;
   }
 
+  .homeproducts-scroll-wrapper {
+    padding: 0 25px;
+  }
+
+  .homeproduct-card {
+    min-width: 190px;
+    height: 300px;
+  }
+
   .homeproduct-overlay h3 {
     font-size: 18px;
+    margin-bottom: 14px;
   }
 
   .homeproduct-overlay {
-    padding: 16px;
+    padding: 18px;
+  }
+}
+
+/* SMALL MOBILE - Older/small phones (375px and below) */
+@media (max-width: 374px) {
+  .homeproducts-section {
+    padding: 40px 0 30px;
+  }
+
+  .homeproducts-heading {
+    padding: 0 12px;
+  }
+
+  .homeproducts-heading span {
+    font-size: 22px;
+  }
+
+  .homeproducts-heading h2 {
+    font-size: 13px;
+  }
+
+  .homeproducts-scroll-wrapper {
+    padding: 0 15px;
+  }
+
+  .homeproduct-card {
+    min-width: 160px;
+    height: 260px;
+  }
+
+  .homeproduct-overlay h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .homeproduct-overlay {
+    padding: 14px;
+  }
+
+  .homeproductoverlay-icons span {
+    width: 36px;
+    height: 36px;
   }
 }
