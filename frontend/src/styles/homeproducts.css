@@ -22,6 +22,7 @@
 
 .homeproducts-heading h2 {
   font-size: 18px;
+  /* font-weight: 700; */
   margin-top: 15px;
   color: #aaa;
   font-family: "Aleo", serif;
@@ -36,30 +37,29 @@
 /* SCROLL CONTAINER */
 .homeproducts-scroll-container {
   display: flex;
-  gap: 1px;
+  gap: 1px; /* smaller gap */
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: auto;
   padding-bottom: 16px;
   cursor: pointer;
-  -webkit-overflow-scrolling: touch; /* ADD THIS for smooth mobile scroll */
 
   /* hide scrollbar everywhere */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 .homeproducts-scroll-container::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome/Safari */
 }
 
 /* CARD */
 .homeproduct-card {
   position: relative;
   min-width: 200px;
-  height: 400px;
+  height: 400px; /* slightly taller */
   overflow: hidden;
-  background: #1a1a1a; /* CHANGED from #fff to dark gray */
+  background: #fff;
   flex-shrink: 0;
   cursor: pointer;
 }
@@ -71,21 +71,6 @@
   object-fit: cover;
   background: #fff;
   transition: transform 0.6s ease;
-  display: block; /* ADD THIS */
-}
-
-/* IMAGE FALLBACK */
-.image-fallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2a2a2a;
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  padding: 20px;
 }
 
 /* IMAGE HOVER MOVE */
@@ -106,15 +91,12 @@
   opacity: 0;
   transform: translateX(-30px);
   transition: all 0.5s ease;
-  pointer-events: none; /* ADD THIS */
 }
 
-/* SHOW OVERLAY ON HOVER (Desktop only) */
-@media (min-width: 769px) {
-  .homeproduct-card:hover .homeproduct-overlay {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* SHOW OVERLAY ONLY ON IMAGE HOVER */
+.homeproduct-card:hover .homeproduct-overlay {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* OVERLAY TEXT */
@@ -161,12 +143,8 @@
     padding: 0 20px;
   }
 
-  .homeproducts-heading span {
-    font-size: 28px; /* Slightly smaller on mobile */
-  }
-
   .homeproducts-heading h2 {
-    font-size: 16px; /* Adjusted */
+    font-size: 22px;
   }
 
   .homeproducts-scroll-wrapper {
@@ -174,17 +152,12 @@
   }
 
   .homeproduct-card {
-    min-width: 200px; /* ADJUSTED for better mobile fit */
-    height: 300px; /* ADJUSTED */
+    min-width: 230px;
+    height: 280px;
   }
 
   .homeproduct-overlay h3 {
-    font-size: 18px;
-  }
-  
-  /* Disable hover effects on mobile */
-  .homeproduct-card:hover img {
-    transform: none;
+    font-size: 20px;
   }
 }
 
@@ -194,15 +167,7 @@
   }
 
   .homeproduct-card {
-    min-width: 180px;
-    height: 280px;
-  }
-  
-  .homeproducts-heading span {
-    font-size: 24px;
-  }
-
-  .homeproducts-heading h2 {
-    font-size: 14px;
+    min-width: 210px;
+    height: 260px;
   }
 }
