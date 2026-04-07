@@ -11,7 +11,8 @@
           "min-height: auto",
           "scrollbar-width",
           "scrollbar-width: none",
-          "user-select"
+          "user-select",
+          "-webkit-overflow-scrolling"
         ]
       }
     ]

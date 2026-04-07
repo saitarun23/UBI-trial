@@ -27,6 +27,7 @@ const extendedProducts = [...homeproducts, ...homeproducts];
 export default function HomeProducts() {
   const scrollContainerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
 
   // auto-scroll in a circular loop
   useEffect(() => {
@@ -76,6 +77,11 @@ export default function HomeProducts() {
     };
   }, []);
 
+  const handleImageError = (index) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+    console.error(`Failed to load image at index ${index}:`, extendedProducts[index].image);
+  };
+
   return (
     <section className="homeproducts-section">
       {/* HEADING */}
@@ -97,7 +103,19 @@ export default function HomeProducts() {
         >
           {extendedProducts.map((item, index) => (
             <div className="homeproduct-card" key={`${item.title}-${index}`}>
-              <img src={item.image} alt={item.title} />
+              <img 
+                src={item.image} 
+                alt={item.title}
+                loading="eager" // Force immediate loading
+                onError={() => handleImageError(index)}
+                style={imageErrors[index] ? { display: 'none' } : {}}
+              />
+              
+              {imageErrors[index] && (
+                <div className="image-fallback">
+                  <span>{item.title}</span>
+                </div>
+              )}
 
               <div className="homeproduct-overlay">
                 <h3>{item.title}</h3>
