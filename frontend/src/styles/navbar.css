@@ -318,66 +318,30 @@
 
   /* -------- ULTRA SMALL MOBILE: <= 360px -------- */
   @media (max-width: 360px) {
-    .navbar-container {
-      padding: 11px 10px;
-    }
-
     .navbar-brand {
-      gap: 5px;
-      flex-wrap: nowrap;
+      gap: 9px;
     }
-
-    .navbar-brand img {
-      height: 38px;
-      width: auto;
-      margin-bottom: 18px;
-      flex-shrink: 0;
+.navbar-brand {
+      gap: 9px;
     }
 
     .brand-text {
-      max-width: 130px;
-      flex: 1;
-      min-width: 0;
+      max-width: 200px;
     }
 
     .brand-name {
-      font-size: 12px;
-      margin-left: 0 !important;
-      margin-right: 0;
+      font-size: 15px;
+      margin-left: -29px;
       font-weight: 550;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.1;
     }
 
     .brand-industry {
-      font-size: 10px;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.1;
-    }
-
-    .navbar-toggle {
-      padding: 2px;
-      flex-shrink: 0;
-    }
-
-    .navbar-toggle span {
-      width: 20px;
-      height: 1.5px;
-      margin: 3px 0;
-    }
-
-    .navbar-menu-mobile {
-      padding: 6px 10px 12px;
+      font-size: 13px;
+      margin-left: 58px;
+      margin-right: 0;
     }
 
     .navbar-menu-mobile a {
-      font-size: 12px;
-      padding: 3px 0;
+      font-size: 13px;
     }
   }
