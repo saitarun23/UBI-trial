@@ -31,22 +31,25 @@
 .homeproducts-scroll-wrapper {
   position: relative;
   padding: 0 60px;
-  /* width: 100%;
-  overflow: hidden; */
+  overflow: hidden;           /* ADD this */
+  max-height: 420px;          /* ADD this - clips second row */
 }
 
-/* SCROLL CONTAINER */
+/* SCROLL CONTAINER - KEY FIX */
 .homeproducts-scroll-container {
   display: flex;
-  gap: 1px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  flex-wrap: nowrap;          /* MUST stay single row */
+  flex-direction: row;        /* ADD this explicitly */
+  align-items: flex-start;    /* ADD this - prevents stretching */
+  gap: 4px;                   /* slight gap increase for visibility */
+  overflow-x: scroll;         /* change from auto to scroll */
+  overflow-y: hidden;         /* hide vertical overflow */
   scroll-behavior: auto;
   padding-bottom: 16px;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
-
-  /* hide scrollbar everywhere */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -54,7 +57,6 @@
 .homeproducts-scroll-container::-webkit-scrollbar {
   display: none;
 }
-
 /* CARD */
 .homeproduct-card {
   position: relative;
@@ -135,10 +137,6 @@
 
 /* SHOW OVERLAY ON TOUCH/CLICK - Mobile */
 @media (max-width: 768px) {
-  .homeproduct-overlay {
-    pointer-events: auto;
-  }
-  
   .homeproduct-card.active .homeproduct-overlay {
     opacity: 1;
     transform: translateX(0);
@@ -194,8 +192,10 @@
     font-size: 16px;
   }
 
-  .homeproducts-scroll-wrapper {
-    padding: 0 20px;
+   .homeproducts-scroll-wrapper {
+    padding: 0 10px;
+    overflow: hidden;
+    max-height: 290px;        /* match card height + padding */
   }
 
   .homeproduct-card {
@@ -228,12 +228,12 @@
   }
 
   .homeproducts-scroll-wrapper {
-    padding: 0 12px;
+    max-height: 300px;
   }
 
   .homeproduct-card {
-    min-width: 160px;
-    height: 280px;
+    min-width: 190px;
+    height: 300px;
   }
 
   .homeproduct-overlay h3 {
@@ -265,12 +265,12 @@
   }
 
   .homeproducts-scroll-wrapper {
-    padding: 0 8px;
+    max-height: 270px;
   }
 
   .homeproduct-card {
-    min-width: 150px;
-    height: 240px;
+    min-width: 160px;
+    height: 260px;
   }
 
   .homeproduct-overlay h3 {
