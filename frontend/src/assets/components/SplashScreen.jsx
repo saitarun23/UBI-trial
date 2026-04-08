@@ -51,36 +51,36 @@ const SplashScreen = ({ onFinish }) => {
 
     // ── Hold ~3s so user reads intro comfortably ────────
 
-    // ── Phase 4: PRINT slide ────────────────────────────── 6.5s
+    // ── Phase 4: PRINT slide ────────────────────────────── 4.5s
     const t6 = setTimeout(() => {
       setIntroHide(true);
       setShowServices(true);
       setActiveIdx(0);
       setShowSubtitle(false);
-    }, 6500);
-    // subtitle + desc appear 1.1s after slide image settles
-    const t6b = setTimeout(() => setShowSubtitle(true), 7600);
+    }, 4500);
+    // subtitle + desc appear 0.8s after slide image settles
+    const t6b = setTimeout(() => setShowSubtitle(true), 5200);
 
-    // ── LAMINATE slide ──────────────────────────────────── 9.5s  (~3s reading time per slide - FASTER)
+    // ── LAMINATE slide ──────────────────────────────────── 6.8s  (~2.3s reading time per slide - FASTER)
     const t7 = setTimeout(() => {
       setActiveIdx(1);
       setShowSubtitle(false);
-    }, 9500);
-    const t7b = setTimeout(() => setShowSubtitle(true), 10600);
+    }, 6800);
+    const t7b = setTimeout(() => setShowSubtitle(true), 7500);
 
-    // ── PACK slide ──────────────────────────────────────── 13.5s
+    // ── PACK slide ──────────────────────────────────────── 9.1s
     const t8 = setTimeout(() => {
       setActiveIdx(2);
       setShowSubtitle(false);
-    }, 13500);
-    const t8b = setTimeout(() => setShowSubtitle(true), 14600);
+    }, 9100);
+    const t8b = setTimeout(() => setShowSubtitle(true), 9800);
 
-    // ── Phase 5: Blur-out exit ──────────────────────────── 17.5s
-    const t9  = setTimeout(() => setBlurring(true), 17500);
+    // ── Phase 5: Blur-out exit ──────────────────────────── 11.8s
+    const t9  = setTimeout(() => setBlurring(true), 11800);
     const t10 = setTimeout(() => {
       document.body.style.overflow = "auto";
       onFinish?.();
-    }, 18700);
+    }, 12800);
 
     return () => {
       [t1,t2,t3,t4,t5,t6,t6b,t7,t7b,t8,t8b,t9,t10].forEach(clearTimeout);
