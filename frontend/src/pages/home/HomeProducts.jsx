@@ -115,7 +115,7 @@ export default function HomeProducts() {
     touchTimeoutRef.current = setTimeout(() => {
       setActiveCardIndex(null);
       autoScrollPausedRef.current = false;
-    }, 1000);
+    }, 3000);
   };
 
   // Handle when user stops touching/clicking
