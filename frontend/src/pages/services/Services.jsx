@@ -6,7 +6,7 @@ import {
   Droplet,
   HeartPulse,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FoodPacketIcon from "../../assets/components/icons/FoodPacketIcon";
 
@@ -262,6 +262,10 @@ const packagingSolutions = [
 export default function Services() {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [productStates, setProductStates] = useState({});
+  const [pausedProductId, setPausedProductId] = useState(null);
+
+  // Keep tracking steps using a mutable reference dictionary to prevent state interval sync issues on resume
+  const productStepsRef = useRef({});
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -270,39 +274,44 @@ export default function Services() {
     return () => clearInterval(interval);
   }, []);
 
-  // Sequence loop for each product: image1 → image2 → overlay
+  // Initialize state steps
   useEffect(() => {
-    const intervals = products.map((product) => {
-      let step = 0; // 0: image1, 1: image2, 2: overlay
-      
-      // Initialize state for this product
+    products.forEach((product) => {
+      productStepsRef.current[product.id] = 0;
       setProductStates((prev) => ({
         ...prev,
         [product.id]: { currentImage: 'image1', showOverlay: false }
       }));
+    });
+  }, []);
 
+  // Sequence loop for each product: image1 → image2 → overlay
+  useEffect(() => {
+    const intervals = products.map((product) => {
       return setInterval(() => {
+        // Checking if the current loop execution is paused by hover or touch
+        if (pausedProductId === product.id) return;
+
+        let step = productStepsRef.current[product.id] || 0;
+
         if (step === 0) {
-          // Show image1
           setProductStates((prev) => ({
             ...prev,
             [product.id]: { currentImage: 'image1', showOverlay: false }
           }));
-          step = 1;
+          productStepsRef.current[product.id] = 1;
         } else if (step === 1) {
-          // Show image2
           setProductStates((prev) => ({
             ...prev,
             [product.id]: { currentImage: 'image2', showOverlay: false }
           }));
-          step = 2;
+          productStepsRef.current[product.id] = 2;
         } else {
-          // Show overlay
           setProductStates((prev) => ({
             ...prev,
             [product.id]: { ...prev[product.id], showOverlay: true }
           }));
-          step = 0;
+          productStepsRef.current[product.id] = 0;
         }
       }, 2500); // Each step lasts 2.5 seconds
     });
@@ -310,7 +319,7 @@ export default function Services() {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, []);
+  }, [pausedProductId]);
 
   const currentConfig = textConfigurations[currentTextIndex];
 
@@ -512,7 +521,7 @@ export default function Services() {
       {/* MAIN BODY */}
       <section className="services-main">
 
-       
+        
         {/* PRODUCTS SHOWCASE */}
         <section className="products-showcase-section">
           <div className="products-showcase-header">
@@ -534,6 +543,10 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: product.id * 0.1 }}
+                  onMouseEnter={() => setPausedProductId(product.id)}
+                  onMouseLeave={() => setPausedProductId(null)}
+                  onTouchStart={() => setPausedProductId(product.id)}
+                  onTouchEnd={() => setPausedProductId(null)}
                 >
                   {/* IMAGE + OVERLAY */}
                   <div className="product-image-container">
