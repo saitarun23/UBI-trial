@@ -38,7 +38,7 @@ export default function HomeProducts() {
     if (!container) return;
 
     let animationId;
-    const speed = 2.5; // px per frame
+    const speed = 1.5; // px per frame
 
     const step = () => {
       // Pause scrolling if hovering (desktop) or auto-scroll is paused (mobile touch)
