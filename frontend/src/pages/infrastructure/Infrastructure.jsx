@@ -9,7 +9,7 @@ const sections = [
     title: "Rotogravure Printing",
     icon: FaCog,
     specs: [
-      { label: "Color Capability", value: "Up to 7 colours" },
+      { label: "Color Capability", value: "Up to 8 colours" },
       { label: "Control System", value: "Auto registration control" },
       { label: "Quality", value: "On-line video & defect detection" },
       { label: "Max Width", value: "1000 mm" },

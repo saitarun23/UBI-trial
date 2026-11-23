@@ -17,7 +17,7 @@ const SplashScreen = ({ onFinish }) => {
     {
       title:    "PRINT",
       subtitle: "Print. Precision. Packaging.",
-      desc:     "High-speed rotogravure printing on flexible films with up to 7 vivid colours.",
+      desc:     "High-speed rotogravure printing on flexible films with up to 8 vivid colours.",
       image:    assets.land1,
     },
     {
